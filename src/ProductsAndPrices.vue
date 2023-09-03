@@ -53,6 +53,7 @@
 <!--  <v-btn @click="this.$store.commit('addProduct')" style="width: 100%;" >+</v-btn>-->
   <v-btn @click="add" style="width: 100%;" >+</v-btn>
 
+  {{ this.$store.state.products }}
 </template>
 
 

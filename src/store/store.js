@@ -51,11 +51,13 @@ const store = createStore({
     },
 
 
+
     fillBuyersMap(state){
       for (let i = 0; i < state.buyers.length; i++){
         state.buyersMap.set(i, state.buyers[i])
       }
-    },fillInPaymentMatrix(state){
+    },
+    fillInPaymentMatrix(state){
 
       for (let i = 0; i < state.buyersMap.size; i++){
         state.paymentMatrix[i] = []
@@ -73,6 +75,7 @@ const store = createStore({
       console.log('paymentMatrix:', state.paymentMatrix)
     },
     fillInDebtMatrix(state, payload){
+
       this.commit("fillBuyersMap", payload)
       this.commit("fillInPaymentMatrix", payload)
 
@@ -108,7 +111,7 @@ const store = createStore({
       for (let i = 0; i < state.debtMatrix.length; i++) {
         for (let j = 0; j < state.debtMatrix.length; j++)
           if (state.debtMatrix[i][j]) {
-            state.result.push(String(state.buyersMap.get(i).name + " должен(а) " + state.buyersMap.get(j).name + ' ' + state.debtMatrix[i][j]))
+            state.result.push(String(state.buyersMap.get(i).name + " должен(а/о) " + state.buyersMap.get(j).name + ' ' + state.debtMatrix[i][j]))
           }
       }
       console.log( state.result)
@@ -121,7 +124,15 @@ const store = createStore({
   getters: {
     getNumberOfBuyers(state){
       return state.buyers.length
-    }
+    },
+    checkPaymentForProducts(state){
+      for (let i = 0; i < state.products.length; i++){
+        if (state.products[i].buyer === null) {
+          return false;
+        }
+      }
+      return true;
+    },
   }
 })
 

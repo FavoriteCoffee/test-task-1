@@ -16,11 +16,6 @@
     </div>
   </div>
 
-
-
-
-
-
 </template>
 
 <script>
@@ -31,7 +26,6 @@
         page: 1,
       }
     },
-
     methods: {
       newPage(){
         if(this.page === 1){
