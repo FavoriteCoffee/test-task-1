@@ -43,13 +43,14 @@
   </div>
 
 
-  <v-text-field label="Введите название товара" @blur="this.$store.state.tempProduct.name = $event.target.value" v-model="this.$store.state.tempProduct.name">
+  <v-text-field label="Введите название товара" @blur="this.$store.state.tempProduct.name = $event.target.value"
+                v-model="this.$store.state.tempProduct.name">
   </v-text-field>
-  <v-text-field label="Введите стоимость товара" @blur="this.$store.state.tempProduct.cost = $event.target.value" v-model="this.$store.state.tempProduct.cost">
-  </v-text-field>
+
+  <v-text-field label="Введите стоимость товара"
+                v-model="tempProductCost" v-on:keyup="setTempProductCost"/>
+
   <v-btn @click="this.$store.commit('addProduct')" style="width: 100%;" >+</v-btn>
-
-
 
 </template>
 
@@ -61,11 +62,15 @@ export default {
   name: "ProductsAndPrices",
   data: () => ({
     model: null,
-    modell: null,
-    namess: 4,
-    arr:''
+
+    tempProductCost: null
   }),
   methods: {
+    setTempProductCost(v) {
+      const val = v.target.value.replace(/[^0-9]/g, "");
+      this.tempProductCost = val;
+      this.$store.state.tempProduct.cost = val;
+    },
     testProductName(){
       if(this.$store.state.tempProduct.name){
         return true

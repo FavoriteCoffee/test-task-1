@@ -38,7 +38,7 @@ const store = createStore({
     },
     chooseEaters(state, ind, names){
       state.products[ind].eaters = names
-    },
+    }
   }
 })
 
