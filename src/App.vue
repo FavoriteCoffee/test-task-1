@@ -43,6 +43,9 @@
         else if(this.page === 3){
           this.$router.push('/three')
         }
+        if(this.page === 3){
+          this.$store.commit('fillInDebtMatrix')
+        }
       }
     },
     components:{
