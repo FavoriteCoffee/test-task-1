@@ -22,24 +22,32 @@
     </v-card>
   </div>
 
-  <v-text-field label="Введите имя" @change="this.$store.state.tempBuyerName = $event.target.value">
+  <v-text-field label="Введите имя" @blur="this.$store.state.tempBuyerName = $event.target.value" v-model="tempName">
 
   </v-text-field>
-  <v-btn @click="this.$store.commit('addBuyer', this.$store.state.tempBuyerName)">+</v-btn>
+<!--  <v-btn @click="this.$store.commit('addBuyer', this.$store.state.tempBuyerName)">+</v-btn>-->
+
+  <v-btn @click="add">+</v-btn>
 
 </template>
 
 <script>
 
 export default {
-
+  data: () => ({
+    tempName: ''
+  }),
 
   methods: {
+    resetInput(){
+      this.tempName = '';
+    },
     change(){
       this.$store.commit('increment', 10)
     },
-    add(val){
-      this.$store.commit('addBuyer', val)
+    add(){
+      this.$store.commit('addBuyer');
+      this.tempName = '';
     }
 
   }
