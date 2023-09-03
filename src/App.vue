@@ -1,5 +1,5 @@
 <template>
-  <div class="conteiner-fuild" style="max-width: 500px; margin: 0 auto;">
+  <div class="conteiner-fuild" style="max-width: 550px; margin: 0 auto;">
 
     <div class="text-h3" style="margin: 10px">Делим счет</div>
     <v-divider :thickness="6"></v-divider>

@@ -7,7 +7,7 @@
   <div v-for="(buyer, ind) in this.$store.state.buyers" :key="ind">
     <v-card
       class="mx-auto"
-      max-width="450"
+      max-width="500"
       variant="outlined"
       style="margin-bottom: 10px;">
 
@@ -22,7 +22,7 @@
     </v-card>
   </div>
 
-  <v-text-field @change="this.$store.state.tempBuyerName = $event.target.value">
+  <v-text-field label="Введите имя" @change="this.$store.state.tempBuyerName = $event.target.value">
 
   </v-text-field>
   <v-btn @click="this.$store.commit('addBuyer', this.$store.state.tempBuyerName)">+</v-btn>
