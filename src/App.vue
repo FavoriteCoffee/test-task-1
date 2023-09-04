@@ -1,5 +1,6 @@
+<!--Основной компонент -->
 <template>
-  <div class="conteiner-fuild" style="max-width: 550px; margin: 0 auto;">
+  <div class="conteiner-fuild" style="max-width: 700px; margin: 0 auto;">
 
     <div class="text-h3" style="margin: 10px">Делим счет</div>
     <v-divider :thickness="6"></v-divider>
@@ -27,6 +28,7 @@
       }
     },
     methods: {
+      //Переключение компонентов
       newPage(){
         if(this.page === 1){
           this.$router.push('/one')
@@ -46,3 +48,4 @@
   }
   }
 </script>
+

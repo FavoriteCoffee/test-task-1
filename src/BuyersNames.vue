@@ -3,11 +3,10 @@
 
   <hr><br>
 
-
   <div v-for="(buyer, ind) in this.$store.state.buyers" :key="ind">
     <v-card
       class="mx-auto"
-      max-width="500"
+      max-width="650"
       variant="outlined"
       style="margin-bottom: 10px;">
 
@@ -23,9 +22,7 @@
   </div>
 
   <v-text-field label="Введите имя" @blur="this.$store.state.tempBuyerName = $event.target.value" v-model="tempName">
-
   </v-text-field>
-<!--  <v-btn @click="this.$store.commit('addBuyer', this.$store.state.tempBuyerName)">+</v-btn>-->
 
   <v-btn @click="add">+</v-btn>
 
@@ -39,12 +36,6 @@ export default {
   }),
 
   methods: {
-    resetInput(){
-      this.tempName = '';
-    },
-    change(){
-      this.$store.commit('increment', 10)
-    },
     add(){
       this.$store.commit('addBuyer');
       this.tempName = '';

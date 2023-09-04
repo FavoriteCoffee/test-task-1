@@ -5,7 +5,7 @@
 
   <v-card
     class="mx-auto"
-    max-width="500"
+    max-width="650"
     variant="outlined"
     style="margin-bottom: 10px;">
     <v-card-item>
@@ -15,8 +15,10 @@
             {{ debt }}
           </h3>
         </div>
+
         <h3 v-else>Никто никому ничего не должен</h3>
       </div>
+
       <h3 v-else>Укажите кто платил за каждый продукт на предыдущей странице</h3>
     </v-card-item>
 
