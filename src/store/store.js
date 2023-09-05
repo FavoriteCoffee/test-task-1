@@ -13,7 +13,9 @@ const store = createStore({
 
       tempProduct: {
         name: '',
-        cost: ''
+        cost: '',
+        buyer: null,
+        eaters: []
       },
       products: [],
       buyersMap: new Map(),
@@ -33,11 +35,11 @@ const store = createStore({
     delBuyer(state, ind){
       state.buyers.splice(ind, 1)
     },
-    addProduct(state) {
+    addProduct(state, e = [], b = null) {
       state.products.push({name: state.tempProduct.name,
         cost: state.tempProduct.cost,
-        buyer: null,
-        eaters: []})
+        buyer: b,
+        eaters: Array.from(e)})
       console.log(state.products)
     },
     delProduct(state, ind){

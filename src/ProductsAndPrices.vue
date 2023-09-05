@@ -13,7 +13,7 @@
 
       <v-card-actions style="float: right; border-bottom: #777; max-width: 200px;">
           <v-btn variant="outlined" @click="this.$store.commit('delProduct', ind)">X</v-btn>
-          <v-btn variant="outlined">править</v-btn>
+          <v-btn variant="outlined" @click="change(ind)">править</v-btn>
       </v-card-actions>
 
       <v-card-item style="float: left; max-width: 500px; margin: 0;">
@@ -53,6 +53,8 @@
 
   <v-btn @click="add" style="width: 100%;" >+</v-btn>
 
+  {{ this.$store.state.products }}
+  {{ tempProductEaters }}
 </template>
 
 
@@ -65,7 +67,9 @@ export default {
     model: null,
 
     tempProductCost: null,
-    tempProductName: ''
+    tempProductName: '',
+    tempProductBuyer: null,
+    tempProductEaters: [],
   }),
   methods: {
     setTempProductCost(v) {
@@ -75,10 +79,20 @@ export default {
     },
     add(){
       if(this.tempProductName && this.tempProductCost) {
-        this.$store.commit('addProduct')
+        this.$store.commit('addProduct', Array.from(this.tempProductEaters), this.tempProductBuyer )
         this.tempProductCost = ''
         this.tempProductName = ''
+        this.tempProductBuyer = null
+        this.tempProductEaters = []
       }
+    },
+    change(ind){
+      this.tempProductCost = this.$store.state.products[ind].cost
+      this.tempProductName = this.$store.state.products[ind].name
+      this.tempProductBuyer = this.$store.state.products[ind].buyer
+      this.tempProductEaters = Array.from(this.$store.state.products[ind].eaters)
+      this.i = ind
+      this.$store.commit('delProduct', ind)
     }
   }
 }
