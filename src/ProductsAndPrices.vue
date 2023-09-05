@@ -69,7 +69,7 @@ export default {
   }),
   methods: {
     setTempProductCost(v) {
-      const val = v.target.value.replace(/[^0-9]/g, "");
+      const val = v.target.value.replace(/[^0-9.-]/g, "");
       this.tempProductCost = val;
       this.$store.state.tempProduct.cost = val;
     },

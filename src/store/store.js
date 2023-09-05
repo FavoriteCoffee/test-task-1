@@ -17,12 +17,12 @@ const store = createStore({
       },
       products: [],
       buyersMap: new Map(),
-      debtMatrix: [],
-      // paymentMatrix: [[null, 60, 300, 160],
-      //                 [100, null, 50, 250],
-      //                 [90, 200, null, 30],
-      //                 [70, 150, 40, null]]
+      // Матрица платежей, куда записывается первоначальная информация он том кто кому сколько должен.
+      // Названия столбцов - имена плативших, названия строк - имена их должников,
+      // в соответствующей ячейке суммируется величина первоначального долга
       paymentMatrix: [],
+      // Матрица долгов с учетом того что покупатели могли быть должны друг другу
+      debtMatrix: [],
       result: []
     }
   },
@@ -111,7 +111,8 @@ const store = createStore({
       for (let i = 0; i < state.debtMatrix.length; i++) {
         for (let j = 0; j < state.debtMatrix.length; j++)
           if (state.debtMatrix[i][j]) {
-            state.result.push(String(state.buyersMap.get(i).name + " должен(а/о) " + state.buyersMap.get(j).name + ' ' + state.debtMatrix[i][j]))
+            state.result.push(String(state.buyersMap.get(i).name + " должен(а/о) " +
+              state.buyersMap.get(j).name + ' ' + state.debtMatrix[i][j].toFixed(2)))
           }
       }
       console.log( state.result)
@@ -125,6 +126,7 @@ const store = createStore({
     getNumberOfBuyers(state){
       return state.buyers.length
     },
+    // Проверка каждому ли продукту был присвоен покупатель
     checkPaymentForProducts(state){
       for (let i = 0; i < state.products.length; i++){
         if (state.products[i].buyer === null) {
